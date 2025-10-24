@@ -1,0 +1,4 @@
+{"users":[{"id":"demo-user","email":"demo@example.com","transactions":[
+{"id":"t1","amount":93.5,"rounded":100,"saved":6.5,"note":"Coffee","timestamp":"2025-10-19T08:00:00Z"},
+{"id":"t2","amount":157.25,"rounded":160,"saved":2.75,"note":"Snacks","timestamp":"2025-10-19T08:30:00Z"},
+{"id":"t3","amount":45.8,"rounded":50,"saved":4.2,"note":"Auto fare","timestamp":"2025-10-19T09:00:00Z"}]}]}
