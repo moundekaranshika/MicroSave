@@ -1,32 +1,13 @@
-const Transaction = require('../models/Transaction');
+const express = require('express');
+const router = express.Router();
 
-function roundUp(amount) {
-    const rounded = Math.ceil(amount / 10) * 10;
-    return { rounded, saved: +(rounded - amount).toFixed(2) };
-}
+const {
+    addTransaction,
+    getSummary
+} = require('../controllers/transactionController');
 
-exports.addTransaction = async (req, res) => {
-    const { amount } = req.body;
+router.post('/transactions', addTransaction);
 
-    const { rounded, saved } = roundUp(amount);
+router.get('/summary', getSummary);   // 👈 IMPORTANT
 
-    const txn = await Transaction.create({
-        amount,
-        rounded,
-        saved
-    });
-
-    res.json(txn);
-};
-
-exports.getSummary = async (req, res) => {
-    const txns = await Transaction.find().sort({ timestamp: -1 });
-
-    const totalSaved = txns.reduce((sum, t) => sum + t.saved, 0);
-
-    res.json({
-        totalSaved,
-        count: txns.length,
-        last5: txns.slice(0, 5)
-    });
-};
+module.exports = router;
