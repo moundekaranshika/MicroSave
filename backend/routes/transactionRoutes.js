@@ -1,8 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { addTransaction, getSummary } = require('../controllers/transactionController');
+
+const {
+    addTransaction,
+    getSummary
+} = require('../controllers/transactionController');
 
 router.post('/transactions', addTransaction);
-router.get('/summary', getSummary);
+
+router.get('/summary', getSummary);   // 👈 IMPORTANT
 
 module.exports = router;
