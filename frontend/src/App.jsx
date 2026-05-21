@@ -12,18 +12,23 @@ function App() {
     setSummary(data);
   };
 
-  const addTxn = async () => {
-    if (!amount) return;
+const addTxn = async () => {
+  console.log("Sending request...");
 
-    await fetch(API + '/transactions', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ amount: parseFloat(amount) })
-    });
+  const res = await fetch(API + '/transactions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      amount: parseFloat(amount)
+    })
+  });
 
-    setAmount('');
-    fetchSummary();
-  };
+  console.log(await res.json());
+
+  fetchSummary();
+};
 
   useEffect(() => {
     fetchSummary();
